@@ -1,0 +1,22 @@
+{:source-paths ["src/"]
+ :nrepl  {:port 7002}
+ :dependencies [[reagent "1.1.0"]
+                [re-frame "1.2.0"]
+                [metosin/reitit "0.5.13"]
+                [com.teknql/shadow-cljs-tailwind-jit "0.2.2"]
+                [re-pressed "0.3.1"]
+                [binaryage/devtools "1.0.3"]]
+
+ :builds {:app {:target :browser
+                :output-dir "resources/public/js"
+                :compiler-options {:infer-externs :auto}
+                :modules {:main {:init-fn sevengui.core/init}}
+                :dev {:build-hooks [(teknql.tailwind/start-watch!)]}
+                :release {:build-hooks [(teknql.tailwind/compile-release!)]}
+                :tailwind/output "resources/public/app.css"
+                :tailwind/files {:base-path "./."
+                                 :tailwind.css "./resources/tw/style.css"}
+                :devtools         {:http-port 3000
+                                   :http-root "resources/public/"
+                                   :after-load sevengui/re-render
+                                   :preloads  [devtools.preload]}}}}

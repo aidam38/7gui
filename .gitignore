@@ -1,0 +1,11 @@
+/resources/public/js
+/resources/public/app.css
+/resources/public/js/compiled
+/node_modules
+/.shadow-cljs
+/.clj-kondo
+/.lsp
+/.calva
+/.vscode
+package-lock.json
+.nrepl-port
