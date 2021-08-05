@@ -1,6 +1,6 @@
 (ns sevengui.five.views
   (:require [re-frame.core :refer [dispatch dispatch-sync subscribe]]
-            [reagent.core :as r]))
+            [sevengui.components :refer [button]]))
 
 (defn filter-input []
   (let [filter-phrase @(subscribe [:five/filter-phrase])]
@@ -32,7 +32,7 @@
 (defn data-editor-line [type]
   (let [currently-editing @(subscribe [:five/currently-editing])]
     [:div.flex.items-center.my-1
-     [:span.w-32.mr-2.text-sm.whitespace-nowrap (str (get pretty-type type) ":")]
+     [:span.w-36.mr-2.text-sm.whitespace-nowrap (str (get pretty-type type) ":")]
      [:input.w-full.p-1
       {:type "text"
        :value (get currently-editing type)
@@ -49,9 +49,6 @@
     [data-view]]
    [:div.ml-1 {:class "w-1/2"}
     [data-editor]]])
-
-(defn button [on-click text]
-  [:button.w-24.rounded.hover:bg-yellow-300 {:on-click on-click} text])
 
 (defn buttons []
   [:div

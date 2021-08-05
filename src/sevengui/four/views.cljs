@@ -1,6 +1,6 @@
 (ns sevengui.four.views
   (:require [re-frame.core :refer [dispatch-sync subscribe]]
-            [reagent.core :as r]))
+            [sevengui.components :refer [button]]))
 
 (defn progress-bar []
   (let [progress @(subscribe [:four/elapsed-time])
@@ -12,7 +12,7 @@
 
 (defn progress-bar-container []
   [:div.flex.items-center
-   [:span.mr-2.whitespace-nowrap "Elapsed time: "]
+   [:span.mr-2.whitespace-nowrap.w-44 "Elapsed time: "]
    [progress-bar]])
 
 (defn slider []
@@ -27,12 +27,12 @@
      [:span (str duration " s")]]))
 
 (defn slider-container []
-  [:div.flex.items-center
-   [:span.mr-2 "Duration "]
+  [:div.flex.items-center.mb-1
+   [:span.mr-2.w-44 "Duration: "]
    [slider]])
 
 (defn reset-button []
-  [:button {:on-click #(dispatch-sync [:four/reset])} "Reset"])
+  [button #(dispatch-sync [:four/reset]) "Reset"])
 
 (defn main []
   [:div.flex.flex-col.justify-center.items.center.w-96

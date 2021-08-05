@@ -1,13 +1,12 @@
 (ns sevengui.three.views
   (:require [re-frame.core :refer [dispatch subscribe]]
-            [reagent.core :as r]))
+            [reagent.core :as r]
+            [sevengui.components :refer [button]]))
 
 (defn chooser []
   [:select.m-2.p-1 {:on-change #(dispatch [:three/change-type (-> % .-target .-value)])}
    [:option {:value "one-way"} "One-way flight"]
    [:option {:value "return"} "Return flight"]])
-
-(def validation-regex #"^[0-9]*[.]?[0-9]")
 
 (defn date-input []
   (let [val (r/atom "")]
@@ -18,7 +17,7 @@
                        :on-blur #(dispatch [:three/update-date type (-> % .-target .-value)])}])))
 
 (defn book-button []
-  [:button.m-2.p-1.w-16.rounded.bg-yellow-200.hover:bg-yellow-300 {:on-click #(dispatch [:three/book])} "Book"])
+  [button #(dispatch [:three/book]) "Book"])
 
 (defn last-booked []
   (let [lbm @(subscribe [:three/last-booked-message])]

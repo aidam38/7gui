@@ -7,7 +7,7 @@
             [sevengui.five.views :as five]))
 
 (defn home []
-  [:div "This is my 7GUI challenge solution."])
+  [:div "This is my 7GUI challenge solution. — Adam Krivka"])
 
 (defn navbar-item [route-name text accent]
   [:div.px-2.mx-1.rounded.border-b-2.cursor-pointer.hover:bg-blue-100
